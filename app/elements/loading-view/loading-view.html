@@ -1,0 +1,43 @@
+<polymer-element name="loading-view" attributes="">
+  <template>
+    <link rel="stylesheet" href="loading-view.css">
+    <div layout horizontal center-justified>
+      <shadow-spinner id="spinner"></shadow-spinner>
+    </div>
+  </template>
+  <script>
+    (function () {
+      Polymer({
+        created: function()
+        {
+        },
+        attached: function()
+        {
+          this.showSpinner();
+
+          setTimeout(function()
+          {
+            this.style.zIndex = xdCount();
+            this.hideSpinner();
+            var el = new AppView();
+            xdPrepend(document.body, el);
+          }.bind(this), 3000);
+        },
+        showSpinner: function()
+        {
+          this.$.spinner.style.opacity = 0;
+          this.$.spinner.style.top = -100;
+          TweenMax.to(this.$.spinner, 0.5, { opacity: 1, top: '40%' });
+        },
+        hideSpinner: function()
+        {
+          TweenMax.to(this.$.spinner, 0.3, { opacity: 0, top: -100, onComplete: this.destroy.bind(this) });
+        },
+        destroy: function()
+        {
+          this.remove();
+        }
+      });
+    })();
+  </script>
+</polymer-element>

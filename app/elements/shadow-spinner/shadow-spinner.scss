@@ -1,0 +1,13 @@
+:host {
+  	display: block;
+	background-color: #fff;
+	position: absolute;
+	height: 100%;
+	width: 100%;
+}
+:host paper-shadow{
+	padding: 6px 6px 3px 6px;
+	border-radius: 50em;
+	width: 28px;
+	height: 31px;
+}

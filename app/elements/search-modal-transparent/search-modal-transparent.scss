@@ -1,0 +1,36 @@
+:host {
+	display: block;
+	background-color: rgba(0, 0, 0, 0.2);
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+}
+:host #toolbar{
+	background-color: transparent;
+}
+:host #panel_content paper-shadow{
+	background-color: #fff;
+}
+:host .wrapper{
+	position: absolute;
+	background-color: rgba(0,0,0,0.2);
+	height: 100%;
+	width: 100%;
+}
+:host core-scroll-header-panel > div{
+	padding: 0px 16px;
+}
+
+:host core-toolbar,
+:host core-toolbar /deep/ #topBar{
+	height: auto !important;
+}
+:host core-toolbar{ margin-top: 11px; }
+
+:host paper-input-decorator{
+	padding: 0px !important;
+}
+
+:host #panel_content{ opacity: 0; }

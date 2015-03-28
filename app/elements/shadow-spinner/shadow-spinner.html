@@ -1,0 +1,17 @@
+<polymer-element name="shadow-spinner" attributes="z">
+  <template>
+    <link rel="stylesheet" href="shadow-spinner.css">
+    <paper-shadow z="{{z}}">
+      <paper-spinner active></paper-spinner>
+    </paper-shadow>
+  </template>
+  <script>
+    (function () {
+      Polymer({
+        publish: {
+          z: 1
+        }
+      });
+    })();
+  </script>
+</polymer-element>

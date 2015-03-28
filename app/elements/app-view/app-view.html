@@ -1,0 +1,105 @@
+<polymer-element name="app-view" constructor="AppView" attributes="">
+  <template>
+    <link rel="stylesheet" href="app-view.css">
+    <style type="text/css">
+      :host #main_content post-list{
+        padding-bottom: {{post_list_bottom}};
+      }
+    </style>
+    <core-drawer-panel>
+      <core-header-panel style="z-index:5;" drawer>
+        <core-toolbar class="tall" id="drawer_toolbar">
+          <div horizontal layout center flex>
+            <div flex three>
+              <span>User Name</span>
+            </div>
+            <div flex two end-justified horizontal layout>
+              <core-image class="avatar" src="http://lorempixel.com/60/60"></core-image>
+            </div>
+          </div>
+        </core-toolbar>
+        <core-menu valueattr="label" id="core_menu" theme="core-light-theme">
+          <core-item label="Logout" icon="settings" horizontal center layout></core-item>
+        </core-menu>
+      </core-header-panel>
+      <core-header-panel main>
+        <core-toolbar id="main_toolbar">
+          <core-icon-button icon="menu" core-drawer-toggle></core-icon-button>
+          <div>Demo</div>
+          <div flex></div>
+          <core-icon-button id="searchModalBtn" icon="search" theme="core-light-theme" on-tap="{{openSearchModal}}"></core-icon-button>
+        </core-toolbar>
+
+        <div id="main_content" layout vertical>
+          <div horizontal layout flex>
+            <core-pages selected="{{selected_tab}}">
+              <div>
+                <core-header-panel mode="cover" flex>
+                  <div horizontal center-justified layout>
+                    <post-list count="{{postCount}}"></post-list>
+                  </div>
+                </core-header-panel>
+              </div>
+              <div>Page 2</div>
+              <div>Page 3</div>
+            </core-pages>
+          </div>
+          <div id="main_tabs">
+            <paper-tabs selected="{{selected_tab}}">
+              <paper-tab>TAB 1</paper-tab>
+              <paper-tab>TAB 2</paper-tab>
+              <paper-tab>TAB 3</paper-tab>
+            </paper-tabs>
+          </div>
+        </div>
+      </core-header-panel>
+    </core-drawer-panel>
+  </template>
+  <script>
+    (function () {
+      Polymer({
+        publish: {
+          selected_tab: 0,
+          post_list_bottom: '40px'
+        },
+        created: function()
+        {
+        },
+        attached: function()
+        {
+          setTimeout(function()
+          {
+            try{
+              var t = new Trianglify({
+                x_gradient: Trianglify.colorbrewer.PuOr[9],
+                noiseIntensity: 0,
+                cellsize: 90
+              });
+              var pt = t.generate(500, 500);
+
+              this.$.drawer_toolbar.style.backgroundImage = pt.dataUrl;
+            }catch(e)
+            {
+              
+            }
+          }.bind(this), 1500);
+        },
+        postCountChanged: function()
+        {
+          if(this.postCount>0)
+          {
+            this.post_list_bottom = (this.$.main_tabs.clientHeight*1.5)+'px';
+          }
+        },
+        openSearchModal: function(event, detail, sender)
+        {
+          console.log('opening... Search Modal');
+
+          var el = new SearchModalTransparent();
+          el.screen_title = 'Search';
+          xdPrepend(document.body, el);
+        }
+      });
+    })();
+  </script>
+</polymer-element>

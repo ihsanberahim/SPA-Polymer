@@ -1,0 +1,57 @@
+<polymer-element name="search-modal" constructor="SearchModal" attributes="screen_title">
+  <template>
+    <link rel="stylesheet" href="search-modal.css">
+    <div class="wrapper" id="content" vertical layout flex>
+      <core-scroll-header-panel>
+        <core-toolbar id="toolbar">
+            <core-icon-button icon="arrow-back" on-click="{{ hide }}"></core-icon-button>
+            <div>{{screen_title}}</div>
+            <div flex></div>
+            <core-icon-button icon="more-vert" on-click="{{ more }}"></core-icon-button>
+          </core-toolbar>
+        <div id="result">Content goes here...</div>
+      </core-scroll-header-panel>
+    </div>
+  </template>
+  <script>
+  Polymer({
+    publish: {
+      screen_title: '',
+    },
+    created: function()
+    {
+    },
+    attached: function()
+    {
+      this.style.opacity = 0;
+      this.$.content.style.top = this.clientHeight;
+      this.style.zIndex = xdCount();
+
+      this.show();
+    },
+    hide: function()
+    {
+      TweenMax.to(this.$.content, 0.25, { top: this.clientHeight });
+      TweenMax.to(this, 0.35, { opacity: 0, delay: 0.25, onComplete: this.destroy.bind(this) });          
+    },
+    show: function()
+    {
+      TweenMax.set(this, { opacity: 0 })
+      TweenMax.to(this, 0.25, { opacity: 1 });
+
+      TweenMax.set(this.$.content, { top: this.clientHeight })
+      TweenMax.to(this.$.content, 0.25, { top: 0, delay: 0.1 });
+    },
+    destroy: function()
+    {
+      this.remove();
+    },
+    more: function()
+    {
+      var el = new SearchModal();
+      el.screen_title='Sample Nested Modal';
+      xdPrepend(document.body, el);
+    }
+  });
+  </script>
+</polymer-element>

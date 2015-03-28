@@ -1,0 +1,14 @@
+{
+  "name": "cordova-polymer-template-3",
+  "version": "0.0.0",
+  "dependencies": {
+    "core-elements": "Polymer/core-elements#^0.5.5",
+    "paper-elements": "Polymer/paper-elements#^0.5.5",
+    "polymer": "Polymer/polymer#^0.5.5",
+    "greensock": "~1.16.1",
+    "trianglify": "~0.1.5"
+  },
+  "devDependencies": {
+    "polymer-test-tools": "Polymer/polymer-test-tools#^0.5.5"
+  }
+}

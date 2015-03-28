@@ -1,0 +1,12 @@
+:host {
+  display: block;
+}
+:host #spinner{
+	display: block;
+	position: absolute;
+	border-radius: 50em;
+	padding: 6px 6px 3px 6px;
+	width: 29px !important;
+	height: 30px;
+	margin-left: -29px;
+}

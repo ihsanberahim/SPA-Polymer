@@ -1,0 +1,34 @@
+<polymer-element name="post-list" attributes="count">
+  <template>
+    <link rel="stylesheet" href="post-list.css">
+    <template repeat="{{ number in entries }}" if="{{entries.length>0}}">
+      <post-card></post-card>
+    </template>
+    <template if="{{entries.length==0}}">
+    <div id="spinner" horizontal center-justified layout>
+      <shadow-spinner></shadow-spinner>
+    </div>
+    </template>
+  </template>
+  <script>
+    (function () {
+      Polymer({
+        publish: {
+          entries: [],
+          count: 0
+        },
+        attached: function()
+        {
+          setTimeout(function()
+          {
+            this.entries = [0,1,2,3,4];
+          }.bind(this),2000);
+        },
+        entriesChanged: function()
+        {
+          this.count = this.entries.length;
+        }
+      });
+    })();
+  </script>
+</polymer-element>

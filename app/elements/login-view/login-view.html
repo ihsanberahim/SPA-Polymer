@@ -1,0 +1,57 @@
+<polymer-element name="login-view" constructor="LoginView" attributes="screen_title">
+  <template>
+    <link rel="stylesheet" href="login-view.css">
+    <div class="wrapper" id="content" vertical layout flex>
+      <core-scroll-header-panel>
+        <core-toolbar>
+            <core-icon-button icon="arrow-back" on-click="{{ hide }}"></core-icon-button>
+            <div>{{screen_title}}</div>
+            <div flex></div>
+            <core-icon-button icon="more-vert" on-click="{{ more }}"></core-icon-button>
+          </core-toolbar>
+        <div>Content goes here...</div>
+      </core-scroll-header-panel>
+    </div>
+  </template>
+  <script>
+  Polymer({
+    publish: {
+      screen_title: '',
+    },
+    created: function()
+    {
+    },
+    attached: function()
+    {
+      this.style.opacity = 0;
+      this.$.content.style.top = this.clientHeight;
+      this.style.zIndex = xdCount();
+
+      this.show();
+    },
+    hide: function()
+    {
+      TweenMax.to(this.$.content, 0.35, { top: this.clientHeight });
+      TweenMax.to(this, 0.5, { opacity: 0, delay: 0.25, onComplete: this.destroy.bind(this) });          
+    },
+    show: function()
+    {
+      TweenMax.set(this, { opacity: 0 })
+      TweenMax.to(this, 0.5, { opacity: 1 });
+
+      TweenMax.set(this.$.content, { top: this.clientHeight })
+      TweenMax.to(this.$.content, 0.35, { top: 0, delay: 0.25 });
+    },
+    destroy: function()
+    {
+      this.remove();
+    },
+    more: function()
+    {
+      var el = new LoginView();
+      el.screen_title='Sample Nested Modal';
+      xdPrepend(document.body, el);
+    }
+  });
+  </script>
+</polymer-element>

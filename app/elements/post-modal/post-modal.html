@@ -1,0 +1,54 @@
+<polymer-element name="post-modal" constructor="PostModal" attributes="sTop, sLeft, sHeight, sWidth">
+  <template>
+    <link rel="stylesheet" href="post-modal.css">
+    <style type="text/css">
+    :host{
+      top: {{sTop}}px;
+      left: {{sLeft}}px;
+      height: {{sHeight}}px;
+      width: {{sWidth}}px;
+    }
+    </style>
+    <div class="wrapper" id="content" vertical layout>
+      <core-header-panel flex vertical layout>
+        <core-toolbar id="toolbar">
+          <core-icon-button icon="arrow-back" on-tap="{{close}}"></core-icon-button>
+          {{screen_title}}</core-toolbar>
+        <div>Content goes here...</div>
+      </core-header-panel>
+    </div>
+  </template>
+  <script>
+    (function () {
+      Polymer({
+        publish: {
+          sTop: 0,
+          sLeft: 0,
+          sHeight: 0,
+          sWidth: 0,
+          screen_title: 'Post'
+        },
+        attached: function()
+        {
+          this.show();
+        },
+        show: function(){
+          this.style.zIndex = xdCount();
+          TweenMax.to(this, 0.35, { top: 0, left: 0, height: '100%', width: '100%' });
+          TweenMax.to(this.$.content, 0.35, { opacity: 1, delay: 0.35 });
+        },
+        close: function(){
+          TweenMax.to(this.$.content, 0.25, { opacity: 0 });
+          TweenMax.to(this, 0.35, { top: this.sTop, left: this.sLeft, height: this.sHeight, width: this.sWidth, delay: 0.35, onComplete: this.destroy.bind(this) });
+        },
+        destroy: function()
+        {
+          this.remove()
+        },
+        number: function(value){
+            return parseFloat(value);
+        },
+      });
+    })();
+  </script>
+</polymer-element>

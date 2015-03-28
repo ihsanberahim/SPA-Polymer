@@ -1,0 +1,87 @@
+<polymer-element name="search-modal-transparent" constructor="SearchModalTransparent" attributes="screen_title">
+  <template>
+    <link rel="stylesheet" href="search-modal-transparent.css">
+    <style type="text/css">
+    .ripple-effect {
+        -webkit-clip-path: circle(50px at 100% 50%);
+        clip-path: circle(50px at 100% 50%);
+        background-color: #fff;
+    }
+    </style>
+    <div class="wrapper" id="content" vertical layout flex>
+      <core-scroll-header-panel>
+        <core-toolbar id="toolbar">
+          <paper-shadow class="ripple-effect" horizontal layout flex>
+            <core-icon-button icon="arrow-back" on-click="{{ hide }}"></core-icon-button>
+            <div flex>
+              <paper-input-decorator label="{{screen_title}}">
+                <input is="core-input">
+              </paper-input-decorator>
+            </div>
+            <core-icon-button icon="search" id="search_trigger" on-click="{{ doSearch }}"></core-icon-button>
+          </paper-shadow>
+        </core-toolbar>
+        <div id="panel_content" vertical layout>
+          <paper-shadow z="1" animated>
+            <template if="{{entries.length>0}}" repeat="{{ entry in entries }}">
+              <paper-item>Item {{number}}</paper-item>
+            </template>
+            <template if="{{entries.length==0}}">
+              <paper-item>Type to start search for something.</paper-item>
+            </template>
+          </paper-shadow>
+        </div>
+      </core-scroll-header-panel>
+    </div>
+  </template>
+  <script>
+  Polymer({
+    publish: {
+      screen_title: '',
+      entries: []
+    },
+    created: function()
+    {
+    },
+    attached: function()
+    {
+      this.style.zIndex = xdCount();
+
+      this.show();
+    },
+    hide: function()
+    {
+      var rippleTarget = this.$.toolbar.children[0];
+
+      TweenMax.to(this.$.panel_content, 0.1, { opacity: 0 });
+      TweenMax.to(rippleTarget, 0.3, {
+        webkitClipPath: "circle(50px at 100% 50%)",
+        clipPath: "circle(50px at 100% 50%)",
+        onComplete: this.destroy.bind(this),
+        delay: 0.1
+      });
+    },
+    show: function()
+    {
+      var rippleTarget = this.$.toolbar.children[0];
+
+      TweenMax.to(rippleTarget, 0.5, { 
+        webkitClipPath: "circle(400px at 100% 50%)",
+        clipPath: "circle(400px at 100% 50%)",
+        onComplete: function()
+        {
+          TweenMax.to(this.$.panel_content, 0.5, { opacity: 1 });
+        }.bind(this)
+      });
+    },
+    destroy: function()
+    {
+      this.remove();
+    },
+    doSearch: function()
+    {
+      
+    }
+  });
+  </script>
+</polymer-element>

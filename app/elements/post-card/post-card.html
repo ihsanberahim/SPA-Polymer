@@ -1,0 +1,41 @@
+<polymer-element name="post-card" attributes="">
+  <template>
+    <link rel="stylesheet" href="post-card.css">
+    <paper-shadow class="wrapper" id="content" z="1" animated vertical layout on-tap="{{openPost}}" vertical layout>
+      <paper-item>Header</paper-item>
+      <div flex>
+          <core-image style="width:200px; height:200px;" sizing="contain"
+            src="http://lorempixel.com/200/200"></core-image>
+      </div>
+      <paper-item>Footer</paper-item>
+    </paper-shadow>
+  </template>
+  <script>
+    (function () {
+      Polymer({
+        attached: function()
+        {
+
+        },
+        openPost: function()
+        {
+          var config = {
+            y: this.getBoundingClientRect().top,
+            x: this.getBoundingClientRect().left,
+            width: this.clientWidth,
+            height: this.clientHeight,
+          };
+
+          console.log('openPost', config);
+
+          var el = new PostModal();
+          el.sLeft = config.x;
+          el.sTop = config.y;
+          el.sWidth = config.width;
+          el.sHeight = config.height;
+          xdPrepend(document.body, el);
+        }
+      });
+    })();
+  </script>
+</polymer-element>
