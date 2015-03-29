@@ -1,12 +1,12 @@
 <polymer-element name="loading-view" attributes="">
   <template>
     <link rel="stylesheet" href="loading-view.css">
-    <div layout horizontal center-justified>
+    <div class="wrapper" id="content" layout horizontal center-justified>
       <shadow-spinner id="spinner"></shadow-spinner>
     </div>
   </template>
   <script>
-    (function () {
+    (function (app) {
       Polymer({
         created: function()
         {
@@ -15,13 +15,10 @@
         {
           this.showSpinner();
 
-          setTimeout(function()
+          app.onready = function()
           {
-            this.style.zIndex = xdCount();
-            this.hideSpinner();
-            var el = new AppView();
-            xdPrepend(document.body, el);
-          }.bind(this), 3000);
+            this.hide();
+          }.bind(this);
         },
         showSpinner: function()
         {
@@ -33,11 +30,20 @@
         {
           TweenMax.to(this.$.spinner, 0.3, { opacity: 0, top: -100, onComplete: this.destroy.bind(this) });
         },
+        hide: function()
+        {
+            this.style.zIndex = xdCount();
+            this.hideSpinner();
+            var el = new AppView();
+            xdPrepend(document.body, el);
+        },
         destroy: function()
         {
           this.remove();
         }
       });
-    })();
+    })(
+      xjApp('app')
+      );
   </script>
 </polymer-element>

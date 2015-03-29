@@ -5,6 +5,7 @@
 	width: 100%;
   	position: absolute;
   	height: 100%;
+  	background-color: #e6e7e8;
 }
 :host post-list{
 	width: 90%;
@@ -41,5 +42,16 @@
   height: 100%;
 }
 :host #main_tabs paper-tab{
-  background-color: #fff;
+  background-color: #387ef5;
+}
+:host paper-tab::shadow #ink{
+  color: #fff;
+}
+:host paper-tabs::shadow #selectionBar {
+	position: absolute;
+	top: 0px;
+  	background-color: #fff;
+}
+:host paper-tab core-icon-button{ 
+	color: #fff; 
 }

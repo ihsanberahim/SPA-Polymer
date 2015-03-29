@@ -1,5 +1,10 @@
 :host {
   display: block;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0px;
+  left: 0px;
 }
 :host #spinner{
 	display: block;
@@ -9,4 +14,12 @@
 	width: 29px !important;
 	height: 30px;
 	margin-left: -29px;
+}
+:host .wrapper{
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	top: 0px;
+	left: 0px;
+	background-color: #e6e7e8;
 }

@@ -1,0 +1,63 @@
+<polymer-element name="post-service" constructor="PostService" attributes="">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+  </template>
+  <script>
+    (function (app) {
+      Polymer({
+        attached: function()
+        {
+
+        },
+        postNewPost: function(postMeta, callback)
+        {
+          var id = now = (new Date()).getTime();
+          var post = app.firebase.child('posts').child(id);
+
+          if(!callback)
+          {
+            callback = function(error){}
+          }
+
+          try{
+            post.set({
+              title: postMeta.title,
+              picture: postMeta.picture,
+              description: postMeta.description,
+              created: now
+            },callback);
+          }catch(e)
+          {
+            callback(e);
+          }
+        },
+        getPosts: function(callback)
+        {
+          var posts = app.firebase.child('posts');
+          var query = posts.limitToLast(30);
+
+          query.on('value',function(snapshot)
+          {
+            var result = snapshot.val();
+            var entries = [];
+
+            for(var id in result)
+            {
+              result[id].id = id;
+
+              entries.push(result[id]);
+            }
+
+            callback.call(this, entries);
+          })
+        }
+      });
+    })(
+      xjApp('app')
+      );
+  </script>
+</polymer-element>

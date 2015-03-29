@@ -1,8 +1,10 @@
-<polymer-element name="post-list" attributes="count">
+<polymer-element name="post-list" attributes="count, type">
   <template>
     <link rel="stylesheet" href="post-list.css">
-    <template repeat="{{ number in entries }}" if="{{entries.length>0}}">
-      <post-card></post-card>
+    <template repeat="{{ entry in entries }}" if="{{entries.length>0}}">
+      <template if="{{ type=='post' }}">
+        <post-card entry="{{entry}}"></post-card>
+      </template>
     </template>
     <template if="{{entries.length==0}}">
     <div id="spinner" horizontal center-justified layout>
@@ -15,14 +17,27 @@
       Polymer({
         publish: {
           entries: [],
-          count: 0
+          count: 0,
+          type: ''
+        },
+        entriesChanged: function()
+        {
+          console.log(this.type, this.entries);
         },
         attached: function()
         {
-          setTimeout(function()
+          switch(this.type)
           {
-            this.entries = [0,1,2,3,4];
-          }.bind(this),2000);
+            case 'post':
+              var scope = this;
+              var el = new PostService();
+              el.getPosts(function(entries)
+              {
+                scope.entries = entries;
+              });
+              xdPrepend(document.body, el);
+            break;
+          }
         },
         entriesChanged: function()
         {

@@ -1,11 +1,41 @@
-(function(document) {
+(function(document, app) {
   'use strict';
 
-  document.addEventListener('polymer-ready', function() {
-    // Perform some behaviour
-    console.log('Polymer is ready to rock!');
+  app.check = new Object({
+    polymer_ready: false,
+    device_ready: false,
   });
 
-// wrap document so it plays nice with other libraries
-// http://www.polymer-project.org/platform/shadow-dom.html#wrappers
-})(wrap(document));
+  app.ready = false;
+
+  // app.firebase = new Firebase("https://<firebase_app>.firebaseio.com/");
+
+  function waitAppReady(arg, arg1, changes, arg2)
+  {
+    if(app.ready==false && typeof app.onready === 'function' && app.check.polymer_ready==true)
+    {
+      if(
+        (typeof cordova !== 'object' && app.check.device_ready==false) || 
+        (typeof cordova === 'object' && app.check.device_ready==true))
+      {
+        app.onready();
+
+        app.ready = true;
+
+        console.log('app ... ready ', (typeof cordova), (typeof Polymer));
+      }
+    }
+  }
+  
+  document.addEventListener('polymer-ready', function() {
+    var observer = new ObjectObserver(app.check);
+    observer.open(waitAppReady, app.check);
+
+  	app.check.polymer_ready = true;
+  });  
+  document.addEventListener('deviceready', function() {
+  	app.check.device_ready = true;
+  });
+})(
+	wrap(document),
+	xjApp('app'));

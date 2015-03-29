@@ -1,4 +1,4 @@
-<polymer-element name="app-view" constructor="AppView" attributes="">
+<polymer-element name="app-view" constructor="AppView" attributes="requireDrawer, requireSearch">
   <template>
     <link rel="stylesheet" href="app-view.css">
     <style type="text/css">
@@ -6,7 +6,7 @@
         padding-bottom: {{post_list_bottom}};
       }
     </style>
-    <core-drawer-panel>
+    <core-drawer-panel disableEdgeSwipe="!requireDrawer" disableSwipe="!requireDrawer">
       <core-header-panel style="z-index:5;" drawer>
         <core-toolbar class="tall" id="drawer_toolbar">
           <div horizontal layout center flex>
@@ -24,31 +24,52 @@
       </core-header-panel>
       <core-header-panel main>
         <core-toolbar id="main_toolbar">
-          <core-icon-button icon="menu" core-drawer-toggle></core-icon-button>
-          <div>Demo</div>
-          <div flex></div>
-          <core-icon-button id="searchModalBtn" icon="search" theme="core-light-theme" on-tap="{{openSearchModal}}"></core-icon-button>
+          <template if="requireDrawer">
+            <core-icon-button icon="menu" core-drawer-toggle></core-icon-button>
+          </template>
+          <div flex horizontal center-justified layout end>{{screen_title}}</div>
+          <template if="requireSearch">
+            <core-icon-button id="searchModalBtn" icon="search" theme="core-light-theme" on-tap="{{openSearchModal}}"></core-icon-button>
+          </template>
         </core-toolbar>
 
         <div id="main_content" layout vertical>
           <div horizontal layout flex>
-            <core-pages selected="{{selected_tab}}">
+            <core-pages selected="{{selectedTab}}">
               <div>
                 <core-header-panel mode="cover" flex>
                   <div horizontal center-justified layout>
-                    <post-list count="{{postCount}}"></post-list>
+                    <post-list count="{{foodCount}}" type="food"></post-list>
                   </div>
                 </core-header-panel>
               </div>
-              <div>Page 2</div>
-              <div>Page 3</div>
+              <div>
+                <core-header-panel mode="cover" flex>
+                  <div horizontal center-justified layout>
+                    <post-list count="{{restaurantCount}}" type="restaurant"></post-list>
+                  </div>
+                </core-header-panel>
+              </div>
+              <div>
+                <core-header-panel mode="cover" flex>
+                  <div horizontal center-justified layout>
+                    <post-list count="{{couponCount}}" type="coupon"></post-list>
+                  </div>
+                </core-header-panel>
+              </div>
             </core-pages>
           </div>
           <div id="main_tabs">
-            <paper-tabs selected="{{selected_tab}}">
-              <paper-tab>TAB 1</paper-tab>
-              <paper-tab>TAB 2</paper-tab>
-              <paper-tab>TAB 3</paper-tab>
+            <paper-tabs selected="{{selectedTab}}">
+              <paper-tab>
+                <core-icon-button icon="maps:local-pizza"></core-icon-button>
+              </paper-tab>
+              <paper-tab>
+                <core-icon-button icon="room"></core-icon-button>
+              </paper-tab>
+              <paper-tab>
+                <core-icon-button icon="loyalty"></core-icon-button>
+              </paper-tab>
             </paper-tabs>
           </div>
         </div>
@@ -59,8 +80,11 @@
     (function () {
       Polymer({
         publish: {
-          selected_tab: 0,
-          post_list_bottom: '40px'
+          selectedTab: 0,
+          post_list_bottom: '40px',
+          screen_title: '',
+          requireDrawer: false,
+          requireSearch: false,
         },
         created: function()
         {
@@ -82,13 +106,26 @@
             {
               
             }
+
           }.bind(this), 1500);
+          
+          this.selectedTabChanged();
         },
-        postCountChanged: function()
+        selectedTabChanged: function()
         {
-          if(this.postCount>0)
+          switch(this.selectedTab)
           {
-            this.post_list_bottom = (this.$.main_tabs.clientHeight*1.5)+'px';
+            default:
+              this.screen_title = 'Food';
+            break;
+            case 1:
+              this.screen_title = 'Restaurant';
+            break;
+            case 2:
+              this.screen_title = 'Coupon';
+            break;
+
+            console.log('screen_title', this.screen_title);
           }
         },
         openSearchModal: function(event, detail, sender)
