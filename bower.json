@@ -1,14 +1,42 @@
 {
   "name": "cordova-polymer-template-3",
   "version": "0.0.0",
+  "homepage": "https://github.com/ihsanberahim/SPA-Polymer",
+  "authors": [
+    "Muhammad Nur'Ihsan Berahim <ihsanberahim@gmail.com>"
+  ],
+  "keywords": [
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ],
   "dependencies": {
+    "context-free-parser": "Polymer/context-free-parser#^0.5",
+    "core-a11y-keys": "Polymer/core-a11y-keys#^0.5",
+    "core-ajax": "Polymer/core-ajax#^0.5",
+    "core-animated-pages": "Polymer/core-animated-pages#^0.5",
+    "core-animation": "Polymer/core-animation#^0.5",
+    "core-collapse": "Polymer/core-collapse#^0.5",
+    "core-doc-viewer": "Polymer/core-doc-viewer#^0.5",
+    "core-docs": "Polymer/core-docs#^0.5",
+    "core-drag-drop": "Polymer/core-drag-drop#^0.5",
+    "core-drawer-panel": "Polymer/core-drawer-panel#^0.5",
+    "core-dropdown-menu": "Polymer/core-dropdown-menu#^0.5",
     "core-elements": "Polymer/core-elements#^0.5.5",
-    "paper-elements": "Polymer/paper-elements#^0.5.5",
-    "polymer": "Polymer/polymer#^0.5.5",
+    "d3": "~3.4.11",
+    "firebase": "~2.2.3",
     "greensock": "~1.16.1",
+    "paper-checkbox": "Polymer/paper-checkbox#^0.5",
+    "paper-dialog": "Polymer/paper-dialog#^0.5",
+    "paper-dropdown-menu": "Polymer/paper-dropdown-menu#^0.5",
+    "paper-elements": "Polymer/paper-elements#^0.5.5",
     "trianglify": "~0.1.5"
-  },
-  "devDependencies": {
-    "polymer-test-tools": "Polymer/polymer-test-tools#^0.5.5"
   }
 }
