@@ -1,0 +1,38 @@
+<polymer-element name="restaurant-card" constructor="RestaurantCard" attributes="entry">
+  <template>
+    <link rel="stylesheet" href="restaurant-card.css">
+    <paper-shadow class="wrapper" id="content" z="1" animated vertical layout vertical layout>
+      <div id="header" horizontal layout>
+        <template if="{{entry.logo!=null}}">
+          <div class="avatar">
+            <core-image height="40px" width="40px" style="width:100%; height:40px;" sizing="cover" src="{{entry.logo}}"></core-image>
+          </div>
+        </template>
+        <div vertical layout class="meta">
+          <strong>{{entry.title}}</strong>
+          <template if="{{entry.foods_count>0}}">
+            <small>{{entry.foods_count}} menus</small>
+          </template>
+        </div>
+      </div>
+      <div>
+          <template if="{{entry.picture!=null}}">
+            <core-image style="width:100%; height:200px;" sizing="cover" src="{{entry.picture}}"></core-image>
+          </template>
+      </div>
+      <template if="{{entry.long != null && entry.lat != null}}">
+        <paper-item noink>
+          <div flex>Get Direction</div>
+          <paper-icon-button icon="maps:map"></paper-icon-button>
+        </paper-item>
+      </template>
+      <template if="{{entry.foods_count>0}}">
+        <paper-item noink>
+          <div flex>View All Menus</div>
+          <paper-icon-button icon="maps:local-pizza" on-tap="{{openRestaurantModal}}"></paper-icon-button>
+        </paper-item>
+      </template>
+    </paper-shadow>
+  </template>
+  <script src="script.js"></script>
+</polymer-element>

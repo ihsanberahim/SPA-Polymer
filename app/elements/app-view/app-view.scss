@@ -1,57 +1,67 @@
+@import '../../styles/variables';
+
 :host {
   display: block;
-}
-:host core-pages{
-	width: 100%;
-  	position: absolute;
-  	height: 100%;
-  	background-color: #e6e7e8;
-}
-:host post-list{
-	width: 90%;
-}
-:host core-toolbar *{ color: #fff; }
-:host core-toolbar{
-	background-color: #387ef5;
-}
-:host #drawer_toolbar{
-	padding-top: 20px;
-	background-image: url('http://trianglify-api.herokuapp.com/image.png');
-	box-shadow: inset 0px 140px 80px -75px rgba(0, 0, 0, 0.4);
-}
-:host [drawer]{
-	background-color: #fff;
-	background-position: bottom right;
-  	background-size: cover;
-}
 
-:host #drawer_toolbar .avatar{
-	border-radius: 50em;
-	width: 40px;
-	height: 40px;
-	background-color: lightgray;
-}
+  	core-pages{
+		width: 100%;
+	  	position: absolute;
+	  	height: 100%;
+	  	background-color: $bg-color;
 
-:host #main_content{
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  overflow: hidden;
-}
-:host #main_content core-header-panel{
-  height: 100%;
-}
-:host #main_tabs paper-tab{
-  background-color: #387ef5;
-}
-:host paper-tab::shadow #ink{
-  color: #fff;
-}
-:host paper-tabs::shadow #selectionBar {
-	position: absolute;
-	top: 0px;
-  	background-color: #fff;
-}
-:host paper-tab core-icon-button{ 
-	color: #fff; 
+	  	section{
+	  		max-height: 100%;
+	  		overflow: scroll;
+	  	}
+	}
+	post-list{
+		width: 90%;
+		margin: 0 auto;
+	}
+	core-toolbar *{ color: #fff; }
+	core-toolbar{
+		background-color: $bar-color;
+	}
+
+	paper-tab::shadow #ink{
+	  color: #fff;
+	}
+	paper-tabs::shadow #selectionBar {
+		position: absolute;
+		top: 0px;
+	  	background-color: #fff;
+	}
+	paper-tab core-icon-button{ 
+		color: #fff; 
+	}
+
+	#drawer_toolbar{
+		padding-top: 20px;
+		background-image: url('http://trianglify-api.herokuapp.com/image.png');
+		box-shadow: inset 0px 140px 80px -75px rgba(0, 0, 0, 0.4);
+	}
+	#drawer_toolbar .avatar{
+		border-radius: 50em;
+		width: 40px;
+		height: 40px;
+		background-color: lightgray;
+	}
+
+	[drawer]{
+		background-color: #fff;
+		background-position: bottom right;
+  		background-size: cover;
+	}
+	 #main_content{
+		height: 100%;
+		width: 100%;
+		position: absolute;
+		overflow: hidden;
+	}
+	#main_content core-header-panel{
+	  height: 100%;
+	}
+	#main_tabs paper-tab{
+	  background-color: $bar-color;
+	}
 }

@@ -1,0 +1,19 @@
+:host {
+  	display: block;
+  	padding: 10px 0px;
+  	min-height: 200px;
+}
+:host .wrapper{
+	opacity: 1;
+  	min-height: 300px;
+  	background-color: #fff;
+}
+:host .wrapper > div{
+	padding: 17px;
+}
+:host core-image{
+	min-height: 200px;
+}
+:host paper-shadow#content.wrapper{
+	position: relative;
+}

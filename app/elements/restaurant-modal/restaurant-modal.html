@@ -1,0 +1,31 @@
+<polymer-element name="restaurant-modal" constructor="RestaurantModal" attributes="ids">
+  <template>
+    <link rel="stylesheet" href="restaurant-modal.css">
+    <style type="text/css">
+/*    :host{
+      top: {{sTop}}px;
+      left: {{sLeft}}px;
+      height: {{sHeight}}px;
+      width: {{sWidth}}px;
+    }*/
+    </style>
+    <div class="wrapper" id="content" vertical layout>
+      <core-header-panel flex vertical layout>
+        <core-toolbar id="toolbar">
+          <core-icon-button icon="arrow-back" on-tap="{{close}}"></core-icon-button>
+          {{screen_title}}
+        </core-toolbar>
+        <div horizontal layout flex>
+          <core-header-panel mode="cover">
+            <div horizontal center-justified layout flex>
+              <template if="{{ids.length>0}}">
+                <post-list id="post_list" type="food" ids="{{ids}}"></post-list>
+              </template>
+            </div>
+          </core-header-panel>
+        </div>
+      </core-header-panel>
+    </div>
+  </template>
+  <script src="script.js"></script>
+</polymer-element>

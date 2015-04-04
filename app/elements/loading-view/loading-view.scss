@@ -1,3 +1,5 @@
+@import '../../styles/variables';
+
 :host {
   display: block;
   position: absolute;
@@ -21,5 +23,5 @@
 	width: 100%;
 	top: 0px;
 	left: 0px;
-	background-color: #e6e7e8;
+	background-color: $bg-color;
 }

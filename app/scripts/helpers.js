@@ -15,6 +15,15 @@ function xjApp(app_name)
 
 	return window[prefixed_app];
 }
+function xjEach(subject, callback)
+{
+	for(var key in subject)
+	{
+		if(typeof key === 'function') continue;
+
+		callback(subject[key], key);
+	}
+}
 /*----------------------------------------------------------------------*/
 /*------------------------------------------------------------------------
 SECTION : DOM

@@ -1,14 +1,21 @@
 (function(document, app) {
   'use strict';
 
+  // app.firebase_url = 'https://<firebase_domain>.firebaseio.com/';
+  app.firebase_url = 'https://dev-eathalal.firebaseio.com/';
+
   app.check = new Object({
     polymer_ready: false,
     device_ready: false,
   });
 
-  app.ready = false;
+  app.getFirebase = function()
+  {
+    return new Firebase(app.firebase_url);
+  }
 
-  // app.firebase = new Firebase("https://<firebase_app>.firebaseio.com/");
+  app.ready = false;
+  app.dummy = false;
 
   function waitAppReady(arg, arg1, changes, arg2)
   {

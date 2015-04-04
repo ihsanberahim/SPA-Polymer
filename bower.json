@@ -1,11 +1,13 @@
 {
-  "name": "cordova-polymer-template-3",
+  "name": "EatHalal-Polymer",
   "version": "0.0.0",
   "homepage": "https://github.com/ihsanberahim/SPA-Polymer",
   "authors": [
     "Muhammad Nur'Ihsan Berahim <ihsanberahim@gmail.com>"
   ],
+  "description": "halal",
   "keywords": [
+    "foods"
   ],
   "license": "MIT",
   "private": true,

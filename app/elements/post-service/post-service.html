@@ -16,7 +16,7 @@
         postNewPost: function(postMeta, callback)
         {
           var id = now = (new Date()).getTime();
-          var post = app.firebase.child('posts').child(id);
+          var post = app.getFirebase().child('posts').child(id);
 
           if(!callback)
           {
@@ -37,10 +37,10 @@
         },
         getPosts: function(callback)
         {
-          var posts = app.firebase.child('posts');
+          var posts = app.getFirebase().child('posts');
           var query = posts.limitToLast(30);
 
-          query.on('value',function(snapshot)
+          query.once('value',function(snapshot)
           {
             var result = snapshot.val();
             var entries = [];

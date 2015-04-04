@@ -10,32 +10,5 @@
       <paper-item>Footer</paper-item>
     </paper-shadow>
   </template>
-  <script>
-    (function () {
-      Polymer({
-        attached: function()
-        {
-
-        },
-        openPost: function()
-        {
-          var config = {
-            y: this.getBoundingClientRect().top,
-            x: this.getBoundingClientRect().left,
-            width: this.clientWidth,
-            height: this.clientHeight,
-          };
-
-          console.log('openPost', config);
-
-          var el = new PostModal();
-          el.sLeft = config.x;
-          el.sTop = config.y;
-          el.sWidth = config.width;
-          el.sHeight = config.height;
-          xdPrepend(document.body, el);
-        }
-      });
-    })();
-  </script>
+  <script src="script.js"></script>
 </polymer-element>

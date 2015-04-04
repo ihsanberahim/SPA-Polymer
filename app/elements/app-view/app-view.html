@@ -36,27 +36,15 @@
         <div id="main_content" layout vertical>
           <div horizontal layout flex>
             <core-pages selected="{{selectedTab}}">
-              <div>
-                <core-header-panel mode="cover" flex>
-                  <div horizontal center-justified layout>
-                    <post-list count="{{foodCount}}" type="food"></post-list>
-                  </div>
-                </core-header-panel>
-              </div>
-              <div>
-                <core-header-panel mode="cover" flex>
-                  <div horizontal center-justified layout>
-                    <post-list count="{{restaurantCount}}" type="restaurant"></post-list>
-                  </div>
-                </core-header-panel>
-              </div>
-              <div>
-                <core-header-panel mode="cover" flex>
-                  <div horizontal center-justified layout>
-                    <post-list count="{{couponCount}}" type="coupon"></post-list>
-                  </div>
-                </core-header-panel>
-              </div>
+              <core-header-panel horizontal center-justified layout>
+                <post-list count="{{foodCount}}" type="food"></post-list>
+              </core-header-panel>
+              <core-header-panel horizontal center-justified layout>
+                <post-list count="{{restaurantCount}}" type="restaurant"></post-list>
+              </core-header-panel>
+              <core-header-panel horizontal center-justified layout>
+                <post-list count="{{couponCount}}" type="coupon"></post-list>
+              </core-header-panel>
             </core-pages>
           </div>
           <div id="main_tabs">
@@ -76,67 +64,5 @@
       </core-header-panel>
     </core-drawer-panel>
   </template>
-  <script>
-    (function () {
-      Polymer({
-        publish: {
-          selectedTab: 0,
-          post_list_bottom: '40px',
-          screen_title: '',
-          requireDrawer: false,
-          requireSearch: false,
-        },
-        created: function()
-        {
-        },
-        attached: function()
-        {
-          setTimeout(function()
-          {
-            try{
-              var t = new Trianglify({
-                x_gradient: Trianglify.colorbrewer.PuOr[9],
-                noiseIntensity: 0,
-                cellsize: 90
-              });
-              var pt = t.generate(500, 500);
-
-              this.$.drawer_toolbar.style.backgroundImage = pt.dataUrl;
-            }catch(e)
-            {
-              
-            }
-
-          }.bind(this), 1500);
-          
-          this.selectedTabChanged();
-        },
-        selectedTabChanged: function()
-        {
-          switch(this.selectedTab)
-          {
-            default:
-              this.screen_title = 'Food';
-            break;
-            case 1:
-              this.screen_title = 'Restaurant';
-            break;
-            case 2:
-              this.screen_title = 'Coupon';
-            break;
-
-            console.log('screen_title', this.screen_title);
-          }
-        },
-        openSearchModal: function(event, detail, sender)
-        {
-          console.log('opening... Search Modal');
-
-          var el = new SearchModalTransparent();
-          el.screen_title = 'Search';
-          xdPrepend(document.body, el);
-        }
-      });
-    })();
-  </script>
+  <script src="script.js"></script>
 </polymer-element>
