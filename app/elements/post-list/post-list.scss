@@ -1,10 +1,12 @@
 :host {
-  display: block;
-  margin-bottom: 20px;
-}
-:host #spinner{
-	margin-top: 10px;
-}
-:host shadow-spinner{
-	margin-left: -29px;
+  	display: block;
+  	padding-bottom: 60px;
+
+	shadow-spinner{
+		margin-left: -29px;
+	}
+
+	#spinner{
+		margin-top: 10px;
+	}
 }

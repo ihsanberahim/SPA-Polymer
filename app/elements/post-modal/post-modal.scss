@@ -1,15 +1,20 @@
 :host {
-  display: block;
-  position: absolute;
-  background-color: #fff;
-}
-:host .wrapper{ opacity: 0 }
-:host .wrapper, :host core-header-panel{
+	display: block;
 	position: absolute;
-	width: 100%;
-	height: 100%;
-}
-:host core-toolbar *{ color: #fff; }
-:host core-toolbar{
-	background-color: #387ef5;
+	background-color: #fff;
+	position: absolute;
+
+	core-toolbar *{ 
+		color: #fff; 
+	}
+	core-toolbar{
+		background-color: #387ef5;
+	}
+
+  	.wrapper{ opacity: 0 }
+  	.wrapper, core-header-panel{
+		position: absolute;
+		width: 100%;
+		height: 100%;
+	}
 }

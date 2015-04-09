@@ -1,14 +1,6 @@
 <polymer-element name="post-modal" constructor="PostModal" attributes="sTop, sLeft, sHeight, sWidth">
   <template>
     <link rel="stylesheet" href="post-modal.css">
-    <style type="text/css">
-    :host{
-      top: {{sTop}}px;
-      left: {{sLeft}}px;
-      height: {{sHeight}}px;
-      width: {{sWidth}}px;
-    }
-    </style>
     <div class="wrapper" id="content" vertical layout>
       <core-header-panel flex vertical layout>
         <core-toolbar id="toolbar">
