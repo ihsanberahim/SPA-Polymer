@@ -1,9 +1,6 @@
 (function(document, app) {
   'use strict';
 
-  // app.firebase_url = 'https://<firebase_domain>.firebaseio.com/';
-  app.firebase_url = 'https://popping-inferno-4710.firebaseio.com/';
-
   app.check = new Object({
     polymer_ready: false,
     device_ready: false,
